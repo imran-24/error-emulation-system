@@ -1,8 +1,6 @@
 import { Faker, en_AU, it, fr } from "@faker-js/faker";
-import "./App.css";
 import { useEffect, useState } from "react";
 import Table from "./components/table";
-// import Loading from './components/loading';
 
 export const countries = [
   { name: "Australia", locale: en_AU },
@@ -39,13 +37,9 @@ const App = () => {
   console.log(selectedCountry);
   const [randomData, setRandomData] = useState([]);
   const [randomErrorData, setRandomErrorData] = useState([]);
-
   const [errorCount, setErrorCount] = useState(0);
   const [active, setActive] = useState(null);
-
   const [loading, setLoading] = useState(false);
-  // const [hasMore, setHasMore] = useState(true);
-  // const [index, setIndex] = useState(2);
 
   // Handles slider change and scales it to the range 0..1000 for the input field
   const handleSliderChange = (e) => {
@@ -58,7 +52,6 @@ const App = () => {
     const inputValue = Math.min(Number(e.target.value), 1000); // Ensure max is 1000
     setErrorCount(inputValue);
   };
-  // Custom locale configuration
 
   // Handle the change in the dropdown
   const handleRegionChange = (value) => {
@@ -207,14 +200,6 @@ const App = () => {
   return (
     <div className=' w-full mx-auto '>
       <div className='flex flex-col'>
-        {/* <InputForm 
-      errorCount={errorCount}
-      handleInputChange={handleInputChange}
-      handleRegionChange={handleRegionChange}
-      handleSliderChange={handleSliderChange}
-      selectedCountry={selectedCountry}
-      /> */}
-
         <NavbarDemo>
           <div className={cn("fixed top-0 inset-x-0  mx-auto z-50")}>
             <Menu setActive={setActive}>
