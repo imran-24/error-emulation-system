@@ -83,7 +83,11 @@ const App = () => {
     for (let i = 0; i < count; i++) {
       const user = {
         id: faker.string.uuid(),
-        name: (faker.person.firstName() + " " + faker.person.lastName()).toLowerCase(), // USA-specific name
+        name: (
+          faker.person.firstName() +
+          " " +
+          faker.person.lastName()
+        ).toLowerCase(), // USA-specific name
         address:
           faker.location.country() +
           ", " +
@@ -91,8 +95,10 @@ const App = () => {
           ", " +
           faker.location.street() +
           ", " +
-          faker.location.buildingNumber(), 
-        phone: faker.phone.number({ style:  Math.random() < 0.5 ? 'national' : 'international' }), 
+          faker.location.buildingNumber(),
+        phone: faker.phone.number({
+          style: Math.random() < 0.5 ? "national" : "international",
+        }),
         // email: faker.internet.email(), // Email generation
       };
 
@@ -131,24 +137,24 @@ const App = () => {
   function applyErrors(data, errorCount) {
     const alphabet = "abcdefghijklmnopqrstuvwxyz";
     const digits = "0123456789"; // For phone number error generation
-  
+
     // Helper function to get a random integer
     const getRandomInt = (max) => Math.floor(Math.random() * max);
-  
+
     // Function to randomly delete a character
     const deleteCharacter = (str) => {
       if (str.length <= 1) return str; // Avoid deletion if it's too short
       const index = getRandomInt(str.length - 2) + 1; // Avoid start or end
       return str.slice(0, index) + str.slice(index + 1);
     };
-  
+
     // Function to randomly add a character
     const addCharacter = (str, charSet) => {
       const index = getRandomInt(str.length - 2) + 1; // Avoid start or end
       const randomChar = charSet[getRandomInt(charSet.length)];
       return str.slice(0, index) + randomChar + str.slice(index);
     };
-  
+
     // Function to swap nearby characters
     const swapCharacters = (str) => {
       if (str.length < 2) return str; // Avoid swapping if it's too short
@@ -157,7 +163,7 @@ const App = () => {
         str.slice(0, index) + str[index + 1] + str[index] + str.slice(index + 2)
       );
     };
-  
+
     // Function to apply a random error to a string
     const applyRandomError = (str, isPhone = false) => {
       const charSet = isPhone ? digits : alphabet; // Use digits for phone numbers
@@ -173,21 +179,20 @@ const App = () => {
           return str;
       }
     };
-  
+
     // Apply errors to the fields, avoiding `id`
     return data.map((record) => {
       const modifiedRecord = { ...record };
-  
+
       if (Math.random() < errorCount / 1000) {
         modifiedRecord.name = applyRandomError(modifiedRecord.name);
         modifiedRecord.address = applyRandomError(modifiedRecord.address);
         modifiedRecord.phone = applyRandomError(modifiedRecord.phone, true); // Pass true for phone
       }
-  
+
       return modifiedRecord;
     });
   }
-  
 
   useEffect(() => {
     if (selectedCountry && (selectedCountry || seed)) {
@@ -273,7 +278,7 @@ const App = () => {
               <MenuItem
                 setActive={setActive}
                 active={active}
-                item='Seeder'
+                item='Seed'
                 // className='px-8 py-2  bg-black text-white text-sm rounded-md font-semibold hover:bg-black/[0.8] hover:shadow-lg'
               >
                 <div className={"relative flex flex-col items-center gap-2"}>
@@ -310,7 +315,7 @@ const App = () => {
                       transition
                       z-10'
                   />
-                  <div className='h-8 absolute right-9 w-[2px] top-0  bg-neutral-200 z-10' />
+                  <div className='h-8 absolute right-5 w-[2px] top-0  bg-neutral-200 z-10' />
                   <button onClick={() => setSeed(getRandomNumber(0, 200000))}>
                     <ShuffleIcon className='size-6 text-blue-500' />
                   </button>
