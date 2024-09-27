@@ -1,5 +1,6 @@
 /* eslint-disable react/prop-types */
 
+// import { useEffect, useState } from "react";
 import Loading from "./loading";
 
 const Table = ({ data, loading }) => {
@@ -7,13 +8,32 @@ const Table = ({ data, loading }) => {
     return null;
   }
 
+  // const [dataSet, setDataSet] = useState(null);
+  // const [loading, setLoading] = useState(true);
+
+  // useEffect(() => {
+  //   const fetchData = async () => {
+  //     try {
+  //       const url = "https://docs.sheetjs.com/executive.json";
+  //       const response = await fetch(url);
+  //       const rawData = await response.json();
+  //       setDataSet(rawData);  // Store the fetched data in state
+  //     } catch (error) {
+  //       console.error("Error fetching data:", error);
+  //     } 
+  //   };
+
+  //   fetchData();  // Call the fetch function inside useEffect
+  // }, []);
+  // console.log(dataSet);
+  
   return (
     <div className='max-w-5xl w-full mx-auto mt-4'>
       <table className='table-auto border-collapse border w-full border-gray-200'>
         <thead className='bg-gray-100 text-xs sm:text-sm'>
           <tr>
             <th className='border p-3 text-xs text-left'>No</th>
-            <th className='border p-3 text-xs text-left'>uid</th>
+            <th className='border p-3 text-xs text-left'>Id</th>
             <th className='border p-3 text-xs text-left'>Name</th>
             <th className='border p-3 text-xs text-left'>Address</th>
             <th className='border p-3 text-xs text-left'>Phone</th>
@@ -34,7 +54,7 @@ const Table = ({ data, loading }) => {
                 {item.id}
               </td>
               <td className='p-3 capitalize  text-xs truncate text-left'>
-                {item.name}
+                {(item.name)}
               </td>
               <td className='p-3 text-xs capitalize  truncate text-left'>
                 {item.address}

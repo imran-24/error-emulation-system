@@ -46,26 +46,40 @@ export const Slider = ({
 }) => {
   return (
     <div className='flex flex-col items-center gap-4'>
-      {/* Slider */}
-      <input
-        type='range'
-        min='0'
-        max='10'
-        value={errorCount / 100} // Scale 0-1000 value back to 0-10 range for slider
-        onChange={handleSliderChange}
-        className='w-1/2' // Adjust slider width as needed
-      />
-
       {/* Number field */}
-      <input
-        type='number'
-        min='0'
-        max='1000'
-        value={errorCount}
-        onChange={handleInputChange}
-        className='text-center border border-gray-300 rounded'
-      />
-    </div>
+      <div className='relative'>
+        <input
+          type='number'
+          min='0'
+          max='1000'
+          value={errorCount}
+          onChange={handleInputChange}
+          className={`p-2
+            pr-1.5
+            py-1.5
+            text-sm
+            rounded
+            ring-[1.5px]
+            ring-neutral-200
+            focus-visible:ring-2
+            focus-visible:ring-neutral-300
+            focus-visible:border-none
+            focus-visible:outline-none
+            transition
+            z-10`}
+            />
+            <div className='h-8 absolute right-5 w-[2px] top-0  bg-neutral-200 z-10' />
+          </div>
+        {/* Slider */}
+        <input
+          type='range'
+          min='0'
+          max='10'
+          value={errorCount / 100} // Scale 0-1000 value back to 0-10 range for slider
+          onChange={handleSliderChange}
+          className='w-1/2' // Adjust slider width as needed
+        />
+      </div>
   );
 };
 

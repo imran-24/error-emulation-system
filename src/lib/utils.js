@@ -6,3 +6,6 @@ export function cn(...inputs) {
   return twMerge(clsx(inputs));
 }
 
+export function getRandomNumber(start, end) {
+  return Math.floor(Math.random() * (end - start + 1)) + start;
+}
